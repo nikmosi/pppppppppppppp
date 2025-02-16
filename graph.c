@@ -19,15 +19,15 @@ int main() {
             if (symbol != ' ')
                 input_formula[i] = symbol;
             else
-                i--;  // читаем формулу игнор пробелов
+                i--;
         }
     } while (!check_input(input_formula));
     polish_notation(operations, input_formula, polish_formula);
     printf("Формула в польской нотации: %s\n", polish_formula);
 
     init_graph(graph, HEIGHT, WIDTH, POINT);
-    add_func_for_graph(graph, HEIGHT, WIDTH, polish_formula);  // размещаем звездочки в матрицу graph
-    draw_graph(graph, HEIGHT);                                 // рисуем график
-    free_matrix(graph, HEIGHT);                                // чистим память матрицы
+    add_func_for_graph(graph, HEIGHT, WIDTH, polish_formula);
+    draw_graph(graph, HEIGHT);
+    free_matrix(graph, HEIGHT);
     return 0;
 }

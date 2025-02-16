@@ -3,14 +3,14 @@
 #include <stdio.h>
 
 char delete(struct stack **head) {
-    struct stack *upper;  // создаем левый указатель структурного типа
+    struct stack *upper;
     char symbol;
-    if (*head == NULL) return '\0';  // проверка стека на пустоту
-    upper = *head;                   // присваем указатель на начало стека
-    symbol = upper->ch;              // записываем операцию в переменную
-    *head = upper->next;             // переключение конца стека
-    free(upper);                     // удаление предыдущего элемента стека
-    return symbol;                   // возврат операции
+    if (*head == NULL) return '\0';
+    upper = *head;
+    symbol = upper->ch;
+    *head = upper->next;
+    free(upper);
+    return symbol;
 }
 
 struct stack *push(struct stack *head, char symbol) {

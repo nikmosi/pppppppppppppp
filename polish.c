@@ -3,13 +3,12 @@
 void polish_notation(struct stack *operations, const char *input_str, char *output_str) {
     int point = 0;
     for (int i = 0; input_str[i] != '\0'; i++) {
-        if (input_str[i] == ')') {  // выпихиваем в стек предыдущие операции
-            while ((operations->ch) != '(')
-                output_str[point++] = delete (&operations);  // вынос операции в польскую нотацию
-            delete (&operations);                            // удаляем скобку
+        if (input_str[i] == ')') {
+            while ((operations->ch) != '(') output_str[point++] = delete (&operations);
+            delete (&operations);
         }
         if ((input_str[i] >= '0' && input_str[i] <= '9') || input_str[i] == 'x')
-            output_str[point++] = input_str[i];  // вынос цифр и х в польскую нотацию
+            output_str[point++] = input_str[i];
 
         char symbol;
         int offset = 0;
@@ -54,7 +53,7 @@ void polish_notation(struct stack *operations, const char *input_str, char *outp
         if (input_str[i] == '(') operations = push(operations, '(');
     }
 
-    while (operations != NULL) output_str[point++] = delete (&operations);  // весь выход формирем тут
+    while (operations != NULL) output_str[point++] = delete (&operations);
     output_str[point] = '\0';
 }
 
