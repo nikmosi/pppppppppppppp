@@ -1,6 +1,6 @@
 #include "calc.h"
 
-double counter(char *output_str, double x) {
+double counter(const char *output_str, double x) {
     int n = strlen(output_str);
     double num1;
     double num2;
@@ -67,7 +67,7 @@ double counter(char *output_str, double x) {
     return operations[ptr];
 }
 
-void add_func_for_graph(char **graph, int height, int width, char *polish) {
+void add_func_for_graph(char **graph, int height, int width, const char *polish) {
     double mid = height / 2.0 - 0.5;
 
     for (int x = 0; x < width; x++) {

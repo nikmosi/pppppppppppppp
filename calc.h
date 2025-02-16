@@ -5,7 +5,7 @@
 
 #include "consts.h"
 
-double counter(char *output_str, double x);
+double counter(const char *output_str, double x);
 void add_func_for_graph(char **graph, int height, int width, char *polish);
 
 #endif  // !CALC_H
