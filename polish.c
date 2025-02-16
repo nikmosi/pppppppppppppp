@@ -1,6 +1,6 @@
 #include "polish.h"
 
-void polish_notation(struct stack *operations, char *input_str, char *output_str) {
+void polish_notation(struct stack *operations, const char *input_str, char *output_str) {
     int point = 0;
     for (int i = 0; input_str[i] != '\0'; i++) {
         if (input_str[i] == ')') {  // выпихиваем в стек предыдущие операции
@@ -82,38 +82,65 @@ int priority(char symbol) {
 }
 
 int check_input(char *input_string) {
+    const char *p = input_string;
     int i = 0;
-    while (input_string[i]) {
-        char token = input_string[i];
-        char oper = '0';
-        int count = 1;
+    int res = 1;
+    while (p[i]) {
+        char oper;
+        int count;
 
-        if (token == '(' || token == ')')
-            oper = token;
-        else if (!strncmp(&input_string[i], "sin", 3)) {
+        if (p[i] == '(') {
+            oper = '(';
+            count = 1;
+        } else if (p[i] == ')') {
+            oper = ')';
+            count = 1;
+        } else if (p[i] == 's' && p[i + 1] == 'i' && p[i + 2] == 'n') {
             oper = 'S';
             count = 3;
-        } else if (!strncmp(&input_string[i], "cos", 3)) {
+        } else if (p[i] == 'c' && p[i + 1] == 'o' && p[i + 2] == 's') {
             oper = 'C';
             count = 3;
-        } else if (!strncmp(&input_string[i], "tan", 3)) {
+        } else if (p[i] == 't' && p[i + 1] == 'a' && p[i + 2] == 'n') {
             oper = 'T';
             count = 3;
-        } else if (!strncmp(&input_string[i], "ctg", 3)) {
+        } else if (p[i] == 'c' && p[i + 1] == 't' && p[i + 2] == 'g') {
             oper = 'Z';
             count = 3;
-        } else if (!strncmp(&input_string[i], "sqrt", 4)) {
+        } else if (p[i] == 's' && p[i + 1] == 'q' && p[i + 2] == 'r' && p[i + 3] == 't') {
             oper = 'Q';
             count = 4;
-        } else if (!strncmp(&input_string[i], "ln", 2)) {
+        } else if (p[i] == 'l' && p[i + 1] == 'n') {
             oper = 'L';
             count = 2;
-        } else if (strchr("*/+-x", token))
-            oper = token;
-        else if (token < '0' || token > '9')
-            return 0;
+        } else if (p[i] == '*') {
+            oper = '*';
+            count = 1;
+        } else if (p[i] == '/') {
+            oper = '/';
+            count = 1;
+        } else if (p[i] == '+') {
+            oper = '+';
+            count = 1;
+        } else if (p[i] == '-') {
+            oper = '-';
+            count = 1;
+        } else if (p[i] == 'x') {
+            oper = 'x';
+            count = 1;
+        } else {
+            oper = '0';
+        }
 
-        i += count;
+        if (oper != '0') {
+            i += count;
+        } else {
+            if (p[i] < '0' || p[i] > '9') {
+                res = 0;
+                break;
+            }
+            i++;
+        }
     }
-    return 1;
+    return res;
 }

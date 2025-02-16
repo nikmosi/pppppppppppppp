@@ -9,7 +9,6 @@ struct stack {
     struct stack *next;
 };
 
-void print(struct stack *head);
 char delete(struct stack **head);
 struct stack *push(struct stack *, char);
 

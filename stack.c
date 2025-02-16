@@ -2,16 +2,6 @@
 
 #include <stdio.h>
 
-void print(struct stack *head) {
-    struct stack *temp = head;
-    printf("start\n");
-    while (temp) {
-        printf("\t%c\n", temp->ch);
-        temp = temp->next;
-    }
-    printf("end\n");
-}
-
 char delete(struct stack **head) {
     struct stack *upper;  // создаем левый указатель структурного типа
     char symbol;
