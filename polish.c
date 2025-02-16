@@ -88,18 +88,32 @@ int check_input(char *input_string) {
         char oper = '0';
         int count = 1;
 
-        if (token == '(' || token == ')') oper = token;
-        else if (!strncmp(&input_string[i], "sin", 3)) { oper = 'S'; count = 3; }
-        else if (!strncmp(&input_string[i], "cos", 3)) { oper = 'C'; count = 3; }
-        else if (!strncmp(&input_string[i], "tan", 3)) { oper = 'T'; count = 3; }
-        else if (!strncmp(&input_string[i], "ctg", 3)) { oper = 'Z'; count = 3; }
-        else if (!strncmp(&input_string[i], "sqrt", 4)) { oper = 'Q'; count = 4; }
-        else if (!strncmp(&input_string[i], "ln", 2)) { oper = 'L'; count = 2; }
-        else if (strchr("*/+-x", token)) oper = token;
-        else if (token < '0' || token > '9') return 0;
+        if (token == '(' || token == ')')
+            oper = token;
+        else if (!strncmp(&input_string[i], "sin", 3)) {
+            oper = 'S';
+            count = 3;
+        } else if (!strncmp(&input_string[i], "cos", 3)) {
+            oper = 'C';
+            count = 3;
+        } else if (!strncmp(&input_string[i], "tan", 3)) {
+            oper = 'T';
+            count = 3;
+        } else if (!strncmp(&input_string[i], "ctg", 3)) {
+            oper = 'Z';
+            count = 3;
+        } else if (!strncmp(&input_string[i], "sqrt", 4)) {
+            oper = 'Q';
+            count = 4;
+        } else if (!strncmp(&input_string[i], "ln", 2)) {
+            oper = 'L';
+            count = 2;
+        } else if (strchr("*/+-x", token))
+            oper = token;
+        else if (token < '0' || token > '9')
+            return 0;
 
         i += count;
     }
     return 1;
 }
-
